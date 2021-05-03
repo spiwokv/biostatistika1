@@ -151,4 +151,21 @@ for(i in 1:100) {
 }
 pvals  # 0.46402544 0.79416813 0.60474046 ...
 sum(pvals < 0.05) # 5
+
+# T-test existuje ve variantách pro stejné a rozdílné rozptyly:
+ctrl <- rnorm(100, 100, 15)
+expr <- rnorm(100, 110, 15)
+t.test(ctrl, expr, var.eqal=TRUE)  # p = 3.793e-05
+t.test(ctrl, expr, var.eqal=FALSE) # p = 3.796e-05
+
+# Párový t-test bychom použili, pokud by byly hodnoty kontrolní
+# a experimentální skupiny spárovány (například IQ pacienta před
+# a po podání léčiva).
+
+# Pokud nepředpokládáme normální rozdělení, můžeme použít
+# neparamterické verze testu:
+wilcox.test(ctrl, expr) 0.0001103
 ```
+
+TODO - ANOVA
+
