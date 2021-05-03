@@ -102,7 +102,7 @@ x <- c(rep(1, 100)+0.1*rnorm(100), rep(2, 100)+0.1*rnorm(100))
 # hodnoty jsou 100x 1 a 100x 2 s trochou šumu
 plot(x, c(ctrl, expr), xlim=c(0,3))
 ```
-![t.test](https://github.com/spiwokv/biostatistika1/edit/main/ttest.png)
+![t.test](https://github.com/spiwokv/biostatistika1/raw/main/ttest.png)
 ```R
 # Jak je vidět z grafu, hodnoty v experimentální skupině
 # jsou posunuté nahoru, ale prolínají se. Jak toto interpretovat?
