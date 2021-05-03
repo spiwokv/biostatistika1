@@ -186,7 +186,7 @@ wilcox.test(ctrl, expr) 0.0001103
 
 # Pokud bychom takto testovali 100 nefunkčních léčiv, pak je
 # pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
-# rovná téměř 1 (přesně 0.0.9940795), tedy je to téměř jisté.
+# rovná téměř 1 (přesně 0.9940795), tedy je to téměř jisté.
 1-0.95^100 # 0.9940795
 
 # Kvůli této skutečnosti byly zavedeny metody, například
