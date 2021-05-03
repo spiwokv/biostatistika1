@@ -101,7 +101,9 @@ t.test(ctrl, expr)  # 3.332e-06
 x <- c(rep(1, 100)+0.1*rnorm(100), rep(2, 100)+0.1*rnorm(100))
 # hodnoty jsou 100x 1 a 100x 2 s trochou šumu
 plot(x, c(ctrl, expr), xlim=c(0,3))
-
+```
+![t.test](https://github.com/spiwokv/biostatistika1/edit/main/img/ttest.png)
+```R
 # Jak je vidět z grafu, hodnoty v experimentální skupině
 # jsou posunuté nahoru, ale prolínají se. Jak toto interpretovat?
 # 1. Můžeme říci, že léčivo ovlivňuje IQ? Ano, je téměř vyloučeno,
