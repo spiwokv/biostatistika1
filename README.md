@@ -66,6 +66,11 @@ t.test(ctrl, expr)
 # 4.154e-06 je nižší než hraniční hodnota 0.05, proto
 # zamítáme nulovou hypotézu, léčivo funguje.
 
+# Hraniční hodnotu alfa (my jsme volili 0.05) je nutné pečlivě
+# zvolit předem. Pokud by byla příliš nízká, pak funkčí léčiva občas
+# nebyla schválena a nebylo by možné pacienty léčit. Pokud by byla
+# příliš vysoká, pak by bylo mnoho nefunkčních léčiv schváleno.
+
 # Výsledná p-hodnota je ovlivněna:
 # 1. rozdílem průměrů (čím více bude léčivo ovlivňovat IQ, tím
 #    snáze tento vliv prokážeme):
@@ -165,7 +170,42 @@ t.test(ctrl, expr, var.eqal=FALSE) # p = 3.796e-05
 # Pokud nepředpokládáme normální rozdělení, můžeme použít
 # neparamterické verze testu:
 wilcox.test(ctrl, expr) 0.0001103
-```
 
-TODO - ANOVA
+Jak bylo ukázáno, pokud platí nulová hypotéza a my uděláme
+t-test, pak je pravděpodobnost, že nesprávně zamítneme nulovou
+hypotézu rovnou hodnotě alfa, například 0.05. Jinými slovy bychom
+takto uvedli na trh každé 20 nefunkční léčivo.
+
+Pokud bychom takto testovali jedno nefunkční léčivo, pak je
+pravděpodobnost, že jej nesprávně uznáme za funkční, rovná 0.05.
+
+Pokud bychom takto testovali dvě nefunkční léčiva, pak je
+pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
+rovná přibližně 0.1 (přesně 0.0975).
+1-0.95^2  # 0.0975
+
+Pokud bychom takto testovali 100 nefunkčních léčiv, pak je
+pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
+rovná téměř 1 (přesně 0.0.9940795), tedy je to téměř jisté.
+1-0.95^100 # 0.9940795
+
+Kvůli této skutečnosti byly zavedeny metody, například
+analýza rozptylu (ANOVA). Tu bychom použili v okamžiku kdy máme
+více než dva výběry, například kontrolu (pacienti nedostávali nic),
+placebo (pacienti dostávali placebo) a experimentální skupinu.
+ctrl <- rnorm(100, 100, 15)
+plac <- rnorm(100, 100, 15)
+expr <- rnorm(100, 110, 15)
+vsechno <- c(ctrl, plac, expr)
+popisek <- c(rep("ctrl", 100), rep("plac", 100), rep("expr", 100)) 
+anova(lm(vsechno~popisek))
+# Analysis of Variance Table
+# 
+# Response: vsechno
+#            Df Sum Sq Mean Sq F value    Pr(>F)    
+# popisek     2  12329  6164.3   24.88 1.023e-10 ***
+# Residuals 297  73585   247.8                      
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
 
