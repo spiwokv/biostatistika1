@@ -171,28 +171,28 @@ t.test(ctrl, expr, var.eqal=FALSE) # p = 3.796e-05
 # neparamterické verze testu:
 wilcox.test(ctrl, expr) 0.0001103
 
-Jak bylo ukázáno, pokud platí nulová hypotéza a my uděláme
-t-test, pak je pravděpodobnost, že nesprávně zamítneme nulovou
-hypotézu rovnou hodnotě alfa, například 0.05. Jinými slovy bychom
-takto uvedli na trh každé 20 nefunkční léčivo.
+# Jak bylo ukázáno, pokud platí nulová hypotéza a my uděláme
+# t-test, pak je pravděpodobnost, že nesprávně zamítneme nulovou
+# hypotézu rovnou hodnotě alfa, například 0.05. Jinými slovy bychom
+# takto uvedli na trh každé 20 nefunkční léčivo.
 
-Pokud bychom takto testovali jedno nefunkční léčivo, pak je
-pravděpodobnost, že jej nesprávně uznáme za funkční, rovná 0.05.
+# Pokud bychom takto testovali jedno nefunkční léčivo, pak je
+# pravděpodobnost, že jej nesprávně uznáme za funkční, rovná 0.05.
 
-Pokud bychom takto testovali dvě nefunkční léčiva, pak je
-pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
-rovná přibližně 0.1 (přesně 0.0975).
+# Pokud bychom takto testovali dvě nefunkční léčiva, pak je
+# pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
+# rovná přibližně 0.1 (přesně 0.0975).
 1-0.95^2  # 0.0975
 
-Pokud bychom takto testovali 100 nefunkčních léčiv, pak je
-pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
-rovná téměř 1 (přesně 0.0.9940795), tedy je to téměř jisté.
+# Pokud bychom takto testovali 100 nefunkčních léčiv, pak je
+# pravděpodobnost, že alespoň jedno nesprávně uznáme za funkční,
+# rovná téměř 1 (přesně 0.0.9940795), tedy je to téměř jisté.
 1-0.95^100 # 0.9940795
 
-Kvůli této skutečnosti byly zavedeny metody, například
-analýza rozptylu (ANOVA). Tu bychom použili v okamžiku kdy máme
-více než dva výběry, například kontrolu (pacienti nedostávali nic),
-placebo (pacienti dostávali placebo) a experimentální skupinu.
+# Kvůli této skutečnosti byly zavedeny metody, například
+# analýza rozptylu (ANOVA). Tu bychom použili v okamžiku kdy máme
+# více než dva výběry, například kontrolu (pacienti nedostávali nic),
+# placebo (pacienti dostávali placebo) a experimentální skupinu.
 ctrl <- rnorm(100, 100, 15)
 plac <- rnorm(100, 100, 15)
 expr <- rnorm(100, 110, 15)
