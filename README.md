@@ -1,4 +1,4 @@
-# biostatistika1
+# Biostatistika 1
 
 ```R
 # Ja si "vygenerovat IQ":
