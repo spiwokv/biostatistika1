@@ -92,6 +92,30 @@ ctrl <- rnorm(1000, 100, 15)
 expr <- rnorm(1000, 110, 15)
 t.test(ctrl, expr)  # p < 2.2e-16
 
+# Pozor na možné desinterpretace p-hodnoty! Pokud bychom měli
+léčivo, které mění IQ o 10 bodů a měli bychom 100 a 100
+dobrovolníků, pak by byl test velmi přesvědčivý (p=3.332e-06)
+ctrl <- rnorm(100, 100, 15)
+expr <- rnorm(100, 110, 15)
+t.test(ctrl, expr)  # 3.332e-06
+x <- c(rep(1, 100)+0.1*rnorm(100), rep(2, 100)+0.1*rnorm(100))
+# hodnoty jsou 100x 1 a 100x 2 s trochou šumu
+plot(x, c(ctrl, expr), xlim=c(0,3))
+
+# Jak je vidět z grafu, hodnoty v experimentální skupině
+# jsou posunuté nahoru, ale prolínají se. Jak toto interpretovat?
+# 1. Můžeme říci, že léčivo ovlivňuje IQ? Ano, je téměř vyloučeno,
+#    že dosažený výsledek by byl dílem náhody.
+# 2. Můžeme říci, že by lidstvo zinteligentnělo, kdyby užívali
+#    léčivo? Ano, je téměř jisté, že by přibylo lidí s vyšším
+#    IQ.
+# 3. Můžeme říci, že by člověk který užívá léčivo je
+#    inteligentnější než někdo, kdo léčivo neužívá? Ne.
+#    Kdybychom vzali náhodného člověka z kontrolní a z
+#    experimentální skupiny, pak by byla pravděpodobnost, že
+#    uživatel léčiva je inteligentnější rovna 62 %:
+sum(ctrl<expr)  # 62
+
 # Pokud bychom vygenerovali data tak, aby platila nulová
 # hypotéza (léčivo nefunguje), mělo by nám vyjít, že
 # p-hodnota je vyšší než 0.05, tedy nezamítáme nulovou
