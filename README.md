@@ -116,4 +116,13 @@ t.test(ctrl, expr)
 # nesprávně zamítneme nulovou hypotézu. Když pokud
 # opakujeme 100x, měl bychom vidět přibližně 5 příkladů
 # nesprávného zamítnutí nulové hypotézy:
+pvals <- c()
+for(i in 1:100) {
+  ctrl <- rnorm(10, 100, 15)
+  expr <- rnorm(10, 100, 15)  
+  pval <- t.test(ctrl, expr)$p.val
+  pvals <- c(pvals, pval)
+}
+pvals  # 0.46402544 0.79416813 0.60474046 ...
+sum(pvals < 0.05) # 5
 ```
